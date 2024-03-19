@@ -1,4 +1,4 @@
-// TLE
+// AC
 #include <iostream>
 #include <vector>
 
@@ -11,32 +11,55 @@ int main(){
     int n, d; // num of pieces, ammount u want
     cin >> n >> d;
 
-    vector<int> pieces;
+    // 'Extending' the vector so i dont need to deal with circular logic
+    vector<int> pieces(n*2);
+    vector<int> prefix(n*2);
 
-    int piece;
-    for (int i = 0; i < n; i++){
-        cin >> piece;
-        pieces.push_back(piece);
+    int input;
+    for (int i = 1; i <= n; i++){
+        cin >> input;
+        pieces[i] = input;
+        pieces[n+i] = input; // So i dont neet to deal with circular logic
     }
+
+    // Calculating prefix
+    for (int i = 1; i < pieces.size(); i++){
+        prefix[i] = prefix[i-1] + pieces[i];
+    }
+
+    // se o tamanho total do sanduíche for menor que d
+	if(prefix[n] < d){
+		
+		// não há solução
+		cout << "0" << endl;
+		return 0;
+	}
+
+    // cout << "\npieces: ";
+    // for (auto u : pieces){
+    //     cout << u << " ";
+    // }
+    // cout << endl;
+
+    // cout << "prefix: ";
+    // for (auto u : prefix){
+    //     cout << u << " ";
+    // }
+    // cout << endl;
 
     int ans = 0;
 
-    int ptr2;
-    for (int ptr1 = 0; ptr1 < n; ptr1++){
-        if (pieces[ptr1] == d) {
-            ans++;
-            continue;
+    int j = 1;
+    for (int i = 1; i <= n; i++){
+        //cout << i << "act: " << prefix[j] - prefix[i-1] << endl;
+        while (prefix[j] - prefix[i-1] < d && j < prefix.size()){
+            j++;
         }
 
-        int sum = pieces[ptr1];
-
-        for (ptr2 = (ptr1 + 1) % n; ptr2 != ptr1; ptr2 = (ptr2 + 1) % n){
-            sum += pieces[ptr2];
-            if (sum < d) continue;
-            if (sum == d) ans++;
-            break;
-        }
+        if (prefix[j] - prefix[i-1] == d) ans++;
     }
 
     cout << ans << endl;
+
+    return 0;
 }
