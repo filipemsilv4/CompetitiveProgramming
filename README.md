@@ -1,1 +1,1 @@
-# NepsAcademyExercises
+# Competitive Programming Questions
