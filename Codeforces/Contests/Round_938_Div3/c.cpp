@@ -1,65 +1,70 @@
+#include <deque>
 #include <iostream>
-#include <vector>
+#include <ostream>
 
 using namespace std;
 
 void testcase() {
   int n, k;
   cin >> n >> k;
-  vector<int> ships(n);
-  int fs = 0, ls = n - 1; // first ship index, last ship index
+  deque<int> ships;
 
   for (int i = 0; i < n; i++) {
-    cin >> ships[i];
+    int tmp;
+    cin >> tmp;
+    ships.push_back(tmp);
   }
 
   int ans = 0;
+  while (k / 2 > 0) {
+    int weaker = min(ships.front(), ships.back());
+    weaker = min(weaker, k / 2);
 
-  bool first_turn = false;
-  while (k > 0 && fs <= ls) {
-    first_turn = !first_turn;
-    if (ships[fs] < 1) {
-      fs++;
+    if (ships.size() < 1)
+      break;
+
+    // attack the first
+    k -= weaker;
+    ships.front() -= weaker;
+    if (ships.front() <= 0) {
+      ships.pop_front();
       ans++;
     }
-    if (ships[ls] < 1) {
-      ls--;
+
+    if (ships.size() < 1)
+      break;
+
+    // attack the last
+    k -= weaker;
+    ships.back() -= weaker;
+    if (ships.back() <= 0) {
+      ships.pop_back();
+      ans++;
+    }
+  }
+
+  while (k > 0) {
+    if (ships.size() < 1)
+      break;
+
+    // attack the first
+    k -= 1;
+    ships.front() -= 1;
+    if (ships.front() <= 0) {
+      ships.pop_front();
       ans++;
     }
 
-    // who is weaker?
-    int weaker;
-    ships[ls] < ships[fs] ? weaker = ls : weaker = fs;
+    if (k < 1 || ships.size() < 1)
+      break;
 
-    if (k / 2 > ships[weaker]) {
-      k -= ships[weaker] * 2;
-      if (weaker == fs) {
-        fs++;
-        ans++;
-        ships[ls] -= ships[weaker];
-        continue;
-      }
-      ls--;
+    // attack the last
+    k -= 1;
+    ships.back() -= 1;
+    if (ships.back() <= 0) {
+      ships.pop_back();
       ans++;
-      ships[fs] -= ships[weaker];
-      continue;
     }
-
-    if (first_turn) {
-      ships[fs]--;
-      if (ships[fs] < 1) {
-        fs++;
-        ans++;
-      }
-    } else {
-      ships[ls]--;
-      if (ships[ls] < 1) {
-        ls--;
-        ans++;
-      }
-    }
-
-    k--;
   }
 
   cout << ans << endl;
