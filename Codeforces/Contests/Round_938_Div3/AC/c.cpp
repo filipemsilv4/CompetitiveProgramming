@@ -5,19 +5,19 @@
 using namespace std;
 
 void testcase() {
-  int n, k;
+  long long int n, k;
   cin >> n >> k;
-  deque<int> ships;
+  deque<long long int> ships;
 
-  for (int i = 0; i < n; i++) {
-    int tmp;
+  for (long long int i = 0; i < n; i++) {
+    long long int tmp;
     cin >> tmp;
     ships.push_back(tmp);
   }
 
-  int ans = 0;
+  long long int ans = 0;
   while (k / 2 > 0) {
-    int weaker = min(ships.front(), ships.back());
+    long long int weaker = min(ships.front(), ships.back());
     weaker = min(weaker, k / 2);
 
     if (ships.size() < 1)
@@ -42,7 +42,6 @@ void testcase() {
       ans++;
     }
   }
-
   while (k > 0) {
     if (ships.size() < 1)
       break;
@@ -67,14 +66,20 @@ void testcase() {
     }
   }
 
+  // cout << "k:" << k << ", sobreviventes: ";
+  // for (auto const &n : ships) {
+  //   cout << n << " ";
+  // }
+  // cout << endl;
+
   cout << ans << endl;
 }
 
 int main() {
-  int t;
+  long long int t;
   cin >> t;
 
-  for (int i = 0; i < t; i++) {
+  for (long long int i = 0; i < t; i++) {
     testcase();
   }
 }
