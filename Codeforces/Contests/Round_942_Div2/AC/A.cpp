@@ -34,7 +34,6 @@ int main() {
         a.pop_back();
         a.push_front(b[0]);
         ans++;
-        i--;
       }
     }
 
