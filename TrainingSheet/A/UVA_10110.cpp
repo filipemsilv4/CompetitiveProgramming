@@ -1,15 +1,21 @@
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
-bool is_prime(int n) {
-  for (int d = 2; d * d <= n; d++) {
-    if (n % d == 0) {
-      return false;
-    }
-  }
+#define lli long long int
 
-  return n >= 2;
+vector<long long> trial_division1(long long n) {
+    vector<long long> factorization;
+    for (long long d = 2; d * d <= n; d++) {
+        while (n % d == 0) {
+            factorization.push_back(d);
+            n /= d;
+        }
+    }
+    if (n > 1)
+        factorization.push_back(n);
+    return factorization;
 }
 
 int main() {
@@ -17,10 +23,12 @@ int main() {
   cin >> n;
 
   while (n != 0) {
-    if (is_prime(n)) {
-      cout << "no" << endl;
+    vector<lli> factors = trial_division1(n);
+
+    if (factors.size() % 2 == 0){
+        cout << "yes" << endl;
     } else {
-      cout << "yes" << endl;
+        cout << "no" << endl;
     }
 
     cin >> n;
