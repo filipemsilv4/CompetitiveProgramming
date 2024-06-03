@@ -1,31 +1,11 @@
-.vscode/*
-NepsAcademy/.vscode/*
-NepsAcademy/bin/*
-Codeforces/Contests/Round_937_Div4/bin/*
-/Codeforces/Contests/Round_938_Div3/bin
-/Codeforces/Problemsets/bin
+# Ignore all bin directories
+**/bin/
+
+# Ignore all .vscode directories
+**/.vscode/
+
+# Ignore specific files and directories
 .zed/settings.json
-/Codeforces/Contests/Round_939_Div2/bin
-/CodeChef/Contests/START130D/bin
-/AtCoder/Contests/Beginner350/bin
-/AtCoder/Contests/Regular176/bin
-/Codeforces/Contests/Round_940_Div2/bin
-/TrainingSheet/A/bin
-/AtCoder/Contests/Beginner351/bin
-Codeforces/Contests/Round_941_Div2/bin/out
-Codeforces/Contests/Round_942_Div2/bin/out
-/Codeforces/Contests/Round_943_Div3/bin
-/Codeforces/Contests/Round_944_Div4/bin
-/AtCoder/Contests/Beginner353/bin
-/Codeforces/Contests/Round_946_Div3/bin
-/Codeforces/Contests/Round_945_Div2/bin
-/FaseZero2024/bin
-/Codeforces/Contests/Educational_166_Div2/bin
-/Codeforces/Contests/Round_947_Div1+2/bin
-/Codeforces/Contests/Round_948_Div2/bin
-/Codeforces/Contests/Round_949_Div2/bin
-AtCoder/Contests/.DS_Store
-AtCoder/Contests/Beginner353/.DS_Store
-/Codeforces/Contests/Round_950_Div3/bin
-/Codeforces/Contests/Educational_165_Div2/bin
-/Codeforces/Contests/Round_063_Div2/bin
+
+# Ignore .DS_Store files in any location
+**/.DS_Store
