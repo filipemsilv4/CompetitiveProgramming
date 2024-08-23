@@ -1,3 +1,7 @@
+/*
+g++ -std=c++17 -o bin/out a.cpp && ./bin/out
+*/
+
 #include <algorithm>
 #include <iostream>
 #include <vector>
