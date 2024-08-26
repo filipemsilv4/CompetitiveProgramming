@@ -10,3 +10,4 @@
 # Ignore .DS_Store files in any location
 **/.DS_Store
 *.out
+.DS_Store
